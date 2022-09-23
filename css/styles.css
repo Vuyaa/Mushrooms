@@ -1,1 +1,59 @@
+:root {
+  --lightblue: #add8e6;
+  --oceanblue: #354b90;
+  --green: #489c00;
+  --grassgreen: #357b00;
+  --darkyellow: #e0b300;
+  --darkgreen: #357b70;
+  --lightviolet: #e6e6fa;
+  --blue: #3f00ff;
+  --gray: #6082b6;
+  --font-size-h2: 24px;
+  --font-weight-h2: 700;
+  --margina: 0 auto;
+  --textal: center;
+  --ivory: #FFFFF0;
+}
 
+* {
+	box-sizing:border-box;
+}
+
+body {
+  font-family: 'Old Standard TT', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+
+  /* Sets the font size to 24px */
+  line-height: 2;
+  background-color: var(--ivory);
+}
+
+.page: {
+
+	
+	
+	
+}
+
+
+.page-header {
+  background-color: red;
+  display: flex;
+  width: auto;
+  padding: 10px;
+	margin: 0 auto;
+  border: 10px solid black;
+
+  /* Attributes describe: thickness, type, color */
+}
+.page-content {
+	
+	
+	
+}
+.page-footer: {
+
+	
+	
+}
