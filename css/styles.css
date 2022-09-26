@@ -43,7 +43,7 @@ body {
   width: auto;
   padding: 10px;
 	margin: 0 auto;
-  border: 10px solid black;
+  border-bottom: 10px solid black;
 
   /* Attributes describe: thickness, type, color */
 }
