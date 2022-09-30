@@ -3,7 +3,8 @@ let pokemonRepository = (function() {
 
 
   // Create an array of objects(pokemons) and assign atributes to them
-  let pokemonList = [{
+  let repository = [
+      {
       name: " Bulbasaur",
       types: [" grass", " poison "],
       height: 3
@@ -20,58 +21,47 @@ let pokemonRepository = (function() {
     },
   ]
 
-  //IIFE part with functions getAll and add
-  function getAll() {
-    return pokemonList;
-  }
-
   function add(pokemon) { 
     if (typeof pokemon !== 'object') {
       alert('New pokemon has to be an object data type')
     }
 		else if (!('name' in pokemon) ||  !('types' in pokemon) || !('height' in pokemon)){
 			alert('Object key is not specified')
-    } else {pokemonList.push(pokemon)
+    } else {repository.push(pokemon)
    }
   };
+    //IIFE part with functions getAll and add
+  function getAll() {
+    return repository;
+  }
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);	
+	  button.addEventListener('click', ()=>{
+            showDetails(pokemon);
+    });
+	}
+
+	function showDetails(pokemon){
+	console.log(pokemon);
+	};
 
   return {
     getAll: getAll,
-    add: add
-  }
-})()
+    add: add,
+	addListItem: addListItem
+  };
+})();
 
-document.write('<ul>')
 //Add. function allows you to add new pokemon object
   pokemonRepository.add({name: ' Jynx', types:[' Ice ', ' Psychic '], height: 5});
 //Acces to the pokemonList array inside the IIFE
   pokemonRepository.getAll().forEach(function(pokemon) {
+	pokemonRepository.addListItem(pokemon);
+});
 	
-  //whole If-else statement has to be in its own {}curly parenthesis !!without semicolons!!
-  //each action within the statements has to be in its own curly parentesis eg. if (//parameters) {}
-  if (pokemon.height < 5) {
-
-    document.write("<li>")
-    document.write(pokemon.name + ": " + pokemon.types + pokemon.height + " meter high <------He is tiny")
-    document.write("</li>")
-
-  } else if (pokemon.height >= 5 && pokemon.height < 8) {
-
-    document.write("<li>")
-    document.write(pokemon.name + ": " + pokemon.types + pokemon.height + " meter high <------Just a normal sized pokemon")
-    document.write("</li>")
-
-  } else {
-    document.write("<li>")
-    document.write(pokemon.name + ": " + pokemon.types + pokemon.height + " meter high <------This one is enormous")
-    document.write("</li>")
-  }
-});
-
-document.write('</ul>')
-
-/*let pokemonAcces = pokemonRepository.getAll().filter(pokemonName => {
-  return pokemonName.name.includes('Golduck');
-});
- console.log(pokemonAcces);*/
- 
