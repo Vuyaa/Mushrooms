@@ -69,7 +69,7 @@ body {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  background-color: #FDDA0D;
+  background-color: #fdcc03ff;
   color: black;
   border: 5px solid #1F51FF;
 }
