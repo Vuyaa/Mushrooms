@@ -1,67 +1,100 @@
 //Create a variable to append our array to a IIFE to avoid accessing the global state
 let pokemonRepository = (function() {
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
 
-  // Create an array of objects(pokemons) and assign atributes to them
-  let repository = [
-      {
-      name: " Bulbasaur",
-      types: [" grass", " poison "],
-      height: 3
-    },
-    {
-      name: " Snorlax",
-      types: [" normal", " fighting "],
-      height: 8
-    },
-    {
-      name: " Golduck",
-      types: [" water", " psychic "],
-      height: 5
-    },
-  ]
-
-  function add(pokemon) { 
-    if (typeof pokemon !== 'object') {
-      alert('New pokemon has to be an object data type')
+  function add(pokemon) {
+    if (
+      typeof pokemon !== 'object') {
+      console.log('New pokemon has to be an object data type')
+    } else {
+      pokemonList.push(pokemon)
     }
-		else if (!('name' in pokemon) ||  !('types' in pokemon) || !('height' in pokemon)){
-			alert('Object key is not specified')
-    } else {repository.push(pokemon)
-   }
   };
-    //IIFE part with functions getAll and add
+
+  //IIFE part with functions getAll and add
   function getAll() {
-    return repository;
+    return pokemonList;
   }
-  function addListItem(pokemon){
+
+  function addListItem(pokemon) {
     let pokemonList = document.querySelector(".pokemon-list");
     let listpokemon = document.createElement("li");
     let button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     listpokemon.appendChild(button);
-    pokemonList.appendChild(listpokemon);	
-	  button.addEventListener('click', ()=>{
-            showDetails(pokemon);
+    pokemonList.appendChild(listpokemon);
+    button.addEventListener('click', () => {
+      showDetails(pokemon);
     });
-	}
+  }
 
-	function showDetails(pokemon){
-	console.log(pokemon);
-	};
+
+  function loadList() {
+    showLoadingMessage();
+    return fetch(apiUrl).then(response => {
+      hideLoadingMessage();
+      return response.json();
+    }).then(function(json) {
+      json.results.forEach(function(item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function(e) {
+      hideLoadingMessage()
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    showLoadingMessage()
+    let url = item.detailsUrl;
+    return fetch(url).then(response => {
+      hideLoadingMessage();
+      return response.json();
+    }).then(function(details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function(e) {
+      hideLoadingMessage()
+      console.error(e);
+    });
+  }
+
+  function showLoadingMessage() {
+    console.log("Loading...")
+  }
+
+  function hideLoadingMessage() {
+    console.log("");
+  }
+
+  function showDetails(item) {
+    pokemonRepository.loadDetails(item).then(function() {
+      console.log(item);
+    });
+  }
 
   return {
-    getAll: getAll,
     add: add,
-	addListItem: addListItem
+    getAll: getAll,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
 })();
 
-//Add. function allows you to add new pokemon object
-  pokemonRepository.add({name: ' Jynx', types:[' Ice ', ' Psychic '], height: 5});
-//Acces to the pokemonList array inside the IIFE
+pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
-	pokemonRepository.addListItem(pokemon);
+    pokemonRepository.addListItem(pokemon);
+  });
 });
 	
