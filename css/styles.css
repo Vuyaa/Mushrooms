@@ -19,6 +19,10 @@
 	box-sizing:border-box;
 }
 
+h1 {
+	color:var(--oceanblue);
+}
+
 body {
   font-family: 'Old Standard TT', sans-serif;
   font-weight: 400;
@@ -52,19 +56,19 @@ body {
 	
 	
 }
-.page-footer: {
+.page-footer {
 
 	
 	
 }
 
 
-.button-class{
+.button-class {
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 30px;
   margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -72,4 +76,12 @@ body {
   background-color: #fdcc03ff;
   color: black;
   border: 5px solid #1F51FF;
+	border-radius:20px;
+	box-shadow: gray 4px 3px 0 0;
+	width:500px;
+}
+.pokemon-list {
+	display:grid;
+	text-align:center;
+	margin:var(--margina;)
 }
