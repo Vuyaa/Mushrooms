@@ -24,6 +24,16 @@
 		margin:0 auto;
 }
 
+.grass {
+ position: absolute;
+ top:  -30px;
+ right: 530px;
+ height:200px;
+ width:800px;
+ border-radius:500px 500px 0 0;
+}
+
+
 h1 {
 	color:var(--oceanblue);
 	margin-left:47.5%;
