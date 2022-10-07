@@ -24,28 +24,19 @@
 		margin:0 auto;
 }
 
-.grass {
- position: absolute;
- top:  -30px;
- right: 530px;
- height:200px;
- width:800px;
- border-radius:500px 500px 0 0;
-}
-
 
 h1 {
 	color:var(--oceanblue);
-	margin-left:47.5%;
+	
+	text-align:center;
+	
 }
 
 button.button-custom {
-	padding: 16px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
-  margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
@@ -54,7 +45,7 @@ button.button-custom {
   border: 5px solid black;
 	border-radius:20px;
 	box-shadow: gray 4px 3px 0 0;
-	width:500px;
+	width:50%;
 }
 
 body {
@@ -94,7 +85,7 @@ body {
 }
 
 .modal {
-	max-width:40%;
+	max-width:70%;
   width: 370px;
 	height: 370px;
   border: 2px solid Black;
@@ -118,6 +109,7 @@ body {
 }
 
 .page-header {
+	text-align:center;
 	height:180px;
 	position:relative;
   background-color: red;
@@ -144,8 +136,8 @@ body {
 
 .button-class {
 	margin: 5px auto;
-  width: 40%;
-  padding: 15px;
+	min-width: 40%;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: block;
@@ -162,15 +154,16 @@ body {
 }
 
 .button-class:hover { 
-transform: scale(1.1);
+transform: scale(1.02);
 box-shadow:#696969 7px 5px 5px 0;
  }
 
 
 .pokemon-list {
+	margin:0 auto;
 	display:grid;
+	text-align:center;
 	list-style: none;
-
 }
 img {
 	height:200px;
