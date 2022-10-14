@@ -39,6 +39,8 @@ body {
 	text-align:center;
 }
 
+
+
 .container {
   text-align: center;
   align-items: center;
@@ -46,6 +48,8 @@ body {
 }
 
 .list-group {
+	display:grid;
+	grid-template-columns:1fr 1fr 1fr;
 	padding-top:120px;
 	list-style:none;
 }
@@ -57,7 +61,8 @@ body {
 
 .navbar-collapse {
 	text-align:center;
-	margin-top:-30px;
+	margin-top:-40px;
+	border-radius:0;
 }
 
 .modal-header , .modal-title{
@@ -74,9 +79,8 @@ body {
 .nav-link {
 	background-color:var(--darkyellow);
 	border: 2px solid #1F51FF;
-	border-radius:20px;
+	border-radius:0px;
 	font-size:20px;
-	
 }
 
  .btn-primary {
@@ -109,3 +113,12 @@ padding-top:-20px;
 padding-bottom:auto;
 }
 
+@media all and (max-width: 768px) {
+  .list-group {
+    grid-template-columns: 1fr 1fr;
+}}
+@media all and (max-width: 500px) {
+  .list-group {
+    grid-template-columns: 1fr;
+}}
+	
