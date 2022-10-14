@@ -2,9 +2,8 @@
 let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-	
-	
-	  function getAll() {
+
+  function getAll() {
     return pokemonList;
   }
 
@@ -22,8 +21,8 @@ let pokemonRepository = (function() {
     let listpokemon = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    listpokemon.appendChild(button);
-		button.setAttribute('data-toggle', 'modal');
+    listpokemon.appendChild(button)
+    button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemon-modal')
     button.classList.add('btn', 'btn-primary')
     pokemonList.appendChild(listpokemon);
@@ -69,33 +68,32 @@ let pokemonRepository = (function() {
     });
   }
 
-function showDetails(pokemon) {
-  loadDetails(pokemon).then(function () {
-    // console.log(pokemon);
-    showModal(pokemon)
-  });
-}
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function() {
+      // console.log(pokemon);
+      showModal(pokemon)
+    });
+  }
 
-	function showModal(pokemon){
-	let modalBody=$(".modal-body"),
-			modalTitle=$(".modal-title");
-			
-			modalTitle.empty(),
-			modalBody.empty();
+  function showModal(pokemon) {
+    let modalBody = $(".modal-body"),
+      modalTitle = $(".modal-title");
 
-			let	pokemonImg=$('<img class="modal-img">');
-					pokemonImg.attr("src",pokemon.imageUrl);
-			let pokemonHeight=$("<p>Height: "+pokemon.height+"</p>"),
-					pokemonTypes=$("<p>Types: "+pokemon.types+"</p>");
-					modalTitle.append(pokemon.name),
-					modalBody.append(pokemonImg),
-					modalBody.append(pokemonHeight),
-					modalBody.append(pokemonTypes)
-}
+    modalTitle.empty(),
+      modalBody.empty();
+
+    let pokemonImg = $('<img class="modal-img">');
+    pokemonImg.attr("src", pokemon.imageUrl);
+    let pokemonHeight = $("<p>Height: " + pokemon.height + "</p>"),
+      pokemonTypes = $("<p>Types: " + pokemon.types + "</p>");
+    modalTitle.append(pokemon.name),
+      modalBody.append(pokemonImg),
+      modalBody.append(pokemonHeight),
+      modalBody.append(pokemonTypes)
+
+  }
 
   //IIFE part with functions getAll and add
-
-
 
   function showLoadingMessage() {
     console.log("Loading...")
@@ -104,8 +102,6 @@ function showDetails(pokemon) {
   function hideLoadingMessage() {
     console.log("");
   }
-
-
 
   return {
     add: add,
@@ -121,5 +117,4 @@ pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
-	});
-	
+});
